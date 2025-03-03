@@ -86,7 +86,7 @@ pub async fn ceive(
     let addre = addrep.to_vec();
 
     let mut bufidl: [u8; 8] = [0; 8];
-    byteorder::LittleEndian::write_u64(&mut bufidl, 10_u64);
+    byteorder::LittleEndian::write_u64(&mut bufidl, 1_u64);
     let byteslice = [addre.as_slice(), &bufidl].concat();
     let nonce: [u8; 32] = [0; 32];
     let byteslice2 = [byteslice, (&nonce).to_vec()].concat();
@@ -96,7 +96,7 @@ pub async fn ceive(
     let hsprefix: &[u8] = &"bee-handshake-".to_string().into_bytes();
 
     let mut bufidb: [u8; 8] = [0; 8];
-    byteorder::BigEndian::write_u64(&mut bufidb, 10_u64);
+    byteorder::BigEndian::write_u64(&mut bufidb, 1_u64);
     let byteslice3 = [hsprefix.to_vec(), underlay.to_vec()].concat();
     let byteslice4 = [byteslice3, overlay.to_vec()].concat();
     let byteslice5 = [byteslice4, bufidb.to_vec()].concat();
@@ -111,7 +111,7 @@ pub async fn ceive(
 
     step_1.address = Some(step_1_ad);
     step_1.nonce = nonce.to_vec();
-    step_1.network_id = 10_u64;
+    step_1.network_id = 1_u64;
     step_1.full_node = false;
     step_1.welcome_message = "... Ara Ara ...".to_string();
 

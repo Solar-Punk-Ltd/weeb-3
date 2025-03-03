@@ -231,7 +231,7 @@ impl Sekirei {
         let wings = self.wings.lock().unwrap();
 
         let peer_id =
-            libp2p::PeerId::from_str("QmaniMaU5kNYzk7pQPWnBmB7Qp1o28FUW9cG4xVC4tGJbK").unwrap();
+            libp2p::PeerId::from_str("QmQabjk6U8f7pV54tD1dboJZXSrmgcYUTfYACw63K5WRAZ").unwrap();
         // libp2p::PeerId::from_str("QmPxeVPawnzvhsSaiZ1pphPYhWMroiPS3VdiDXRtzrbJXA").unwrap();
 
         let (peers_instructions_chan_outgoing, peers_instructions_chan_incoming) = mpsc::channel();
@@ -300,13 +300,14 @@ impl Sekirei {
 
         let conn_handle = async {
             let addr2 =
-            "/ip4/192.168.0.101/tcp/18634/ws/p2p/QmaniMaU5kNYzk7pQPWnBmB7Qp1o28FUW9cG4xVC4tGJbK"
+            "/ip4/149.102.141.72/tcp/18634/ws/p2p/QmQabjk6U8f7pV54tD1dboJZXSrmgcYUTfYACw63K5WRAZ"
                 .parse::<Multiaddr>()
                 .unwrap();
 
             let mut bootnode_connected = false;
             while bootnode_connected == false {
                 {
+                web_sys::console::log_1(&JsValue::from(format!("CONNNN")));
                     let mut swarm = self.swarm.lock().unwrap();
                     bootnode_connected = match swarm.dial(addr2.clone()) {
                         Ok(()) => true,
